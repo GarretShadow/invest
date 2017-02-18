@@ -1,0 +1,2 @@
+def invest(project):
+    pass
