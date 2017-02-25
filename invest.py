@@ -6,12 +6,15 @@ class Invest:
         self.data = data
         self.status_list = []
         self.status_list_next_step = []
-        # prj = [-1] * len(self.data['projects'])
-        # self.gray(0, prj, prj)
-        # self.status_list = self.status_list_next_step
-        # self.status_list_next_step.clear()
+
+    def init(self):
+        prj = [-1] * len(self.data['projects'])
+        self.gray(0, prj, prj)
+        self.status_list = self.status_list_next_step
+        self.status_list_next_step.clear()
 
     def solve(self):
+        self.init()
         for time in self.data['period']:
             self.next_step(time + 1)
 
@@ -47,6 +50,7 @@ class Invest:
         pass
 
     @classmethod
-    def from_json(cls, file):
-        data = json.load(file)
+    def from_json(cls, file_name):
+        with open(file_name) as f:
+            data = json.load(f)
         return cls(data)
