@@ -2,14 +2,14 @@ import json
 
 
 class Invest:
-    def __init__(self, file):
-        self.data = json.load(file)
+    def __init__(self, data):
+        self.data = data
         self.status_list = []
         self.status_list_next_step = []
-        prj = [-1] * self.data['project_count']
-        self.gray(0, prj, prj)
-        self.status_list = self.status_list_next_step
-        self.status_list_next_step.clear()
+        # prj = [-1] * len(self.data['projects'])
+        # self.gray(0, prj, prj)
+        # self.status_list = self.status_list_next_step
+        # self.status_list_next_step.clear()
 
     def solve(self):
         for time in self.data['period']:
@@ -46,4 +46,7 @@ class Invest:
     def next_step(self):
         pass
 
-
+    @classmethod
+    def from_json(cls, file):
+        data = json.load(file)
+        return cls(data)
