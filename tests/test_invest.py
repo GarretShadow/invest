@@ -1,6 +1,6 @@
 from invest import Invest
 
 
-def test_invest(projects):
-    for project in projects:
-        Invest(project)
+def test_invest(problems):
+    for problem in problems:
+        Invest(problem)

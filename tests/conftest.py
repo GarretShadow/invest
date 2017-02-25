@@ -4,14 +4,13 @@ import os
 
 import pytest
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+PROBLEMS_DIR = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
 
 @pytest.fixture
-def projects():
-    projects_list = []
-    for file_name in glob.glob(os.path.join(PROJECT_DIR, 'data/*.json')):
+def problems():
+    problems_list = []
+    for file_name in glob.glob(os.path.join(PROBLEMS_DIR, 'data/*.json')):
         with open(file_name) as f:
-            project = json.load(f)
-            projects_list.append(project)
-    return projects_list
+            problems_list.append(json.load(f))
+    return problems_list
