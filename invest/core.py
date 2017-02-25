@@ -1,4 +1,5 @@
 import json
+import itertools
 
 
 class Invest:
@@ -48,6 +49,23 @@ class Invest:
 
     def next_step(self):
         pass
+
+    @staticmethod
+    def generate_projects_times(projects_times, time):
+        """
+        >>> list(Invest.generate_projects_times([-1, 0, 2, -1, -1], 0))
+        [[-1, 0, 2, -1, -1], [-1, 0, 2, -1, 0], [-1, 0, 2, 0, -1], [-1, 0, 2, 0, 0], [0, 0, 2, -1, -1], [0, 0, 2, -1, 0], [0, 0, 2, 0, -1], [0, 0, 2, 0, 0]]
+        """
+        count = projects_times.count(-1)
+        for i in itertools.product([-1, time], repeat=count):
+            v = list(i)
+            result = []
+            for j in projects_times:
+                if j != -1:
+                    result.append(j)
+                else:
+                    result.append(v.pop(0))
+            yield result
 
     @classmethod
     def from_json(cls, file_name):
